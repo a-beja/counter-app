@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, Pressable } from 'react-native';
 import * as Haptics from 'expo-haptics';
 
@@ -23,7 +23,7 @@ export default function FAB({ label, position = 'center', onPress, onLongPress }
 
   return (
     <Pressable
-      style={ ({ pressed }) => [ 
+      style={ ({ pressed }: { pressed: boolean }) => [ 
         styles.floatingButton, 
         positionStyles[position],
         pressed ? { opacity: 0.5 } : { opacity: 1 }

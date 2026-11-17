@@ -2,6 +2,36 @@
 
 Esta guía reúne los conceptos que aparecen en esta app de contador. Para cada uno se indica dónde se usa, qué hace aquí y en qué otros tipos de apps puede servir.
 
+## Índice
+
+- [1. Estructura de la app](#1-estructura-de-la-app)
+  - [Punto de entrada de Expo](#punto-de-entrada-de-expo)
+  - [Componente raíz](#componente-raíz)
+  - [Componentes reutilizables](#componentes-reutilizables)
+  - [Importaciones y exportación por defecto](#importaciones-y-exportación-por-defecto)
+- [2. React y TypeScript](#2-react-y-typescript)
+  - [Componentes funcionales y JSX](#componentes-funcionales-y-jsx)
+  - [Estado con `useState`](#estado-con-usestate)
+  - [Props y componentes configurables](#props-y-componentes-configurables)
+  - [Tipos de TypeScript](#tipos-de-typescript)
+  - [Valores por defecto y encadenamiento opcional](#valores-por-defecto-y-encadenamiento-opcional)
+  - [Funciones flecha y callbacks](#funciones-flecha-y-callbacks)
+- [3. Interfaz de React Native](#3-interfaz-de-react-native)
+  - [Componentes nativos básicos](#componentes-nativos-básicos)
+  - [Eventos: pulsar y mantener pulsado](#eventos-pulsar-y-mantener-pulsado)
+  - [Estilos y Flexbox](#estilos-y-flexbox)
+  - [Posicionamiento y estilos dinámicos](#posicionamiento-y-estilos-dinámicos)
+  - [Sombras y apariencia](#sombras-y-apariencia)
+  - [Estilos en línea](#estilos-en-línea)
+- [4. Expo](#4-expo)
+  - [`expo-haptics`](#expo-haptics)
+  - [Barra de estado](#barra-de-estado)
+  - [Configuración del proyecto](#configuración-del-proyecto)
+  - [Comandos del proyecto](#comandos-del-proyecto)
+- [5. Flujo del contador](#5-flujo-del-contador)
+- [6. Herramientas y dependencias](#6-herramientas-y-dependencias)
+- [7. Lo que todavía no se usa en esta app](#7-lo-que-todavía-no-se-usa-en-esta-app)
+
 ## 1. Estructura de la app
 
 | Tema | Dónde aparece | Uso en esta app | Otros usos |
@@ -135,10 +165,11 @@ Se usan objetos de estilo directamente en el JSX, por ejemplo el color y tamaño
 
 En `package.json`:
 
-- `npm start`: inicia Expo.
-- `npm run android`: inicia Expo intentando abrir Android.
-- `npm run ios`: inicia Expo intentando abrir iOS.
-- `npm run web`: inicia Expo para web.
+- `bun run start`: inicia Expo.
+- `bun run android`: inicia Expo intentando abrir Android.
+- `bun run ios`: inicia Expo intentando abrir iOS.
+- `bun run web`: inicia Expo para web.
+- `bun install`: instala las dependencias del proyecto.
 
 ## 5. Flujo del contador
 
@@ -155,6 +186,7 @@ Este flujo —estado en un componente, acciones pasadas a componentes hijos medi
 - **React:** biblioteca para construir la interfaz y administrar estado.
 - **React Native:** componentes y estilos para interfaces móviles nativas.
 - **Expo:** herramientas y configuración para desarrollar y ejecutar la app en varias plataformas.
+- **Bun:** gestor de paquetes y runtime usado en este proyecto para instalar dependencias y ejecutar los scripts de `package.json`.
 - **TypeScript:** tipos estáticos; este proyecto hereda la configuración base de Expo y activa `strict`.
 - **`expo-haptics`:** API de Expo para retroalimentación háptica.
 - **`expo-status-bar`:** componente de Expo para la barra de estado.
