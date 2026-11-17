@@ -1,89 +1,74 @@
 # Temas puntuales
 
-En esta app de contador practicamos conceptos básicos de React Native con Expo. La pantalla muestra un número y permite aumentarlo, disminuirlo o reiniciarlo.
+En esta app de contador practicamos conceptos básicos de React Native con Expo.
 
-## React y TypeScript
+## Archivos principales
+
+- `App.tsx` — pantalla, estado y acciones del contador.
+- `components/FAB.tsx` — botón flotante reutilizable.
+- `index.ts` — punto de entrada de la app en Expo.
+- `app.json` — configuración de Expo y plataformas.
+- `package.json` — dependencias y scripts ejecutados con Bun:
+  - `bun install`
+  - `bun run start`, `bun run android`, `bun run ios`, `bun run web`
+- `tsconfig.json` — configuración de TypeScript en modo `strict`.
+
+## React y TS
 
 ### Componentes y JSX
 
-- **Componentes funcionales** — funciones que dibujan la UI: `function App()` y `function FAB(...)`.
-- **JSX** — estructura visual; `{count}` inserta el valor del contador.
+- **Componentes funcionales** — `function App()` y `function FAB(...)`.
+- **JSX** — estructura visual; `{count}` inserta el número.
 
 ### Estado y contador
 
-- `useState` guarda el contador: `const [count, setCount] = useState(10)`.
-- Sumar uno con `+1`
-- Restar uno con `-1`
-- Reiniciar con `R`
-- Reiniciar al mantener presionado `+1`
-- `setCount` cambia el valor y React actualiza la UI.
-- El contador funcional está en `App`; el `useState` de `FAB` no se utiliza
+- **`useState`** — guarda el contador: `const [count, setCount] = useState(10)`.
+- `setCount` actualiza el estado y React vuelve a dibujar la UI.
+- `+1` suma; `-1` resta; `R` y mantener `+1` reinician.
+- El estado de `FAB` no se usa; el contador funcional vive en `App`.
 
-### Componente reutilizable `FAB` y sus props
+### Componente `FAB` y sus props
 
-- `FAB` se reutiliza con distintas etiquetas, posiciones y acciones.
-- `interface Props` define lo que puede recibir el componente.
+- **`interface Props`** — define las props que recibe `FAB`.
 - **Props:** `label`, `position`, `onPress`, `onLongPress`.
 - **Obligatoria/opcionales:** `label: string`; las demás usan `?`.
 - **Opciones limitadas:** `position?: 'left' | 'right' | 'center'`.
-- `positionStyles[position]` aplica el estilo de la posición elegida.
-- **Callbacks:** `onPress` y `onLongPress` tienen tipo `() => void`.
-- **Predeterminado:** `position = 'center'`.
+- **Callbacks:** `onPress` y `onLongPress` son funciones `() => void`.
+- **Valor predeterminado:** `position = 'center'`.
 - **Desestructuración:** `({ label, position })`.
 - **Llamada opcional:** `onPress?.()`.
-- `App` pasa callbacks flecha, como `onPress={() => setCount(count + 1)}`.
+- `FAB` se reutiliza con distintas etiquetas, posiciones y acciones.
+- `App` le pasa callbacks flecha, por ejemplo `onPress={() => setCount(count + 1)}`.
 
-## Componentes de React Native
+## Componentes de RN
 
 ### `View` y `Text`
 
 - `View` — contenedor de la pantalla.
-- `Text` — muestra el contador y las etiquetas de los botones.
+- `Text` — muestra el contador y las etiquetas.
 
 ### `Pressable`, eventos y respuesta háptica
 
-- `Pressable` — crea cada botón `FAB`.
+- `Pressable` — crea los botones `FAB`.
 - `onPress` — acción al tocar; `onLongPress` — acción al mantener presionado.
-- `pressed` — indica que se está presionando el botón.
-- Estilo dinámico combinado: `style={({ pressed }) => [styles.floatingButton, positionStyles[position], pressed ? { opacity: 0.5 } : { opacity: 1 }]}`.
+- `pressed` — indica que el botón está siendo presionado.
+- Estilo dinámico: `style={({ pressed }) => [styles.floatingButton, positionStyles[position], pressed ? { opacity: 0.5 } : { opacity: 1 }]}`.
 - Los eventos ejecutan los callbacks que `App` pasó mediante props.
 - Expo Haptics añade respuesta táctil: `Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)`.
 
 ## Estilos y diseño
 
-- `StyleSheet.create` — agrupa estilos: `StyleSheet.create({ container: { flex: 1 } })`
-- **Flexbox** — ocupa y centra el contenido: `{ flex: 1, alignItems: 'center', justifyContent: 'center' }`
-- **Posicionamiento absoluto** — ubica un botón flotante: `{ position: 'absolute', bottom: 20 }`
-- **Estilos en línea** — se escriben directamente en JSX: `style={{ color: 'white', fontSize: 20 }}`
-- **Apariencia** — color y texto: `backgroundColor: '#65558F'`, `fontSize: 120`, `fontWeight: '100'`
-- **Espaciado y bordes** — `padding: 20`, `borderRadius: 15`
-- **Sombras/elevación** — `shadowOpacity: 0.3`, `elevation: 3`
+- `StyleSheet.create` — agrupa estilos: `StyleSheet.create({ container: { flex: 1 } })`.
+- **Flexbox** — centra el contenido: `{ flex: 1, alignItems: 'center', justifyContent: 'center' }`.
+- **Posicionamiento absoluto** — ubica el botón: `{ position: 'absolute', bottom: 20 }`.
+- **Estilos en línea** — `style={{ color: 'white', fontSize: 20 }}`.
+- **Apariencia** — `backgroundColor`, `fontSize`, `fontWeight`.
+- **Espaciado y bordes** — `padding`, `borderRadius`.
+- **Sombras/elevación** — `shadowOpacity`, `elevation`.
 
 ## Expo y configuración
 
-- Punto de entrada con `registerRootComponent`
-- `expo-status-bar` para la barra de estado
-- `StatusBar` con estilo automático: `<StatusBar style="auto" />`
-- `app.json` para nombre, orientación, iconos y opciones de plataforma
-- Expo para ejecutar la app en iOS, Android y web
-
-## Herramientas del proyecto
-
-- TypeScript con modo `strict` en `tsconfig.json`
-- Bun para instalar dependencias y ejecutar scripts
-- `bun install`
-- `bun run start`
-- `bun run android`
-- `bun run ios`
-- `bun run web`
-
-## Archivos principales
-
-- `App.tsx` — pantalla y estado del contador
-- `components/FAB.tsx` — componente del botón flotante
-- `index.ts` — entrada de la app en Expo
-- `app.json` — configuración de Expo
-- `package.json` — dependencias y scripts
-- `tsconfig.json` — configuración de TypeScript
-
-Con estos conceptos se construyó la pantalla, se reutilizó un botón personalizado y se conectaron sus interacciones con el estado de React.
+- `registerRootComponent` conecta `App` con Expo.
+- `expo-status-bar` y `<StatusBar style="auto" />` configuran la barra de estado.
+- `app.json` configura nombre, orientación, iconos y opciones de plataforma.
+- Expo permite ejecutar la app en iOS, Android y web.
