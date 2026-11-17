@@ -9,75 +9,61 @@ En esta app de contador practicamos conceptos básicos de React Native con Expo.
 - **Componentes funcionales** — funciones que dibujan la UI: `function App()` y `function FAB(...)`.
 - **JSX** — estructura visual; `{count}` inserta el valor del contador.
 
-### Estado
+### Estado y contador
 
-- **`useState`** — guarda datos y actualiza la UI: `const [count, setCount] = useState(10)`.
-
-### Props de `FAB`
-
-- **Props** — datos que recibe el componente: `label`, `position`.
-- **`interface Props`** — define qué props acepta `FAB`.
-- **Obligatorias y opcionales** — `label: string`; `position?: 'left' | 'right' | 'center'`.
-- **Opciones limitadas** — `position` solo acepta `'left' | 'right' | 'center'`.
-- **Callbacks** — props para pasar acciones: `onPress`, `onLongPress`.
-- **Tipo callback** — `() => void`: función sin argumentos ni valor de retorno.
-- **Valor predeterminado** — `position = 'center'`.
-- **Desestructuración** — extrae props: `({ label, position })`.
-- **Encadenamiento opcional** — llama solo si existe: `onPress?.()`.
-
-### Funciones flecha
-
-- Acciones breves: `() => setCount(count + 1)`.
-
-## Componentes de React Native
-
-- `View` — contenedor de la pantalla
-- `Text` — muestra el número y las etiquetas
-- `Pressable` — crea botones interactivos
-
-## Eventos e interacción
-
-- `onPress` — acción al tocar un botón
-- `onLongPress` — acción al mantenerlo presionado
-- `pressed` — estado de `Pressable` mientras se presiona
-- Estilo dinámico con `style={({ pressed }) => [...]}` según la pulsación
-- Retroalimentación háptica al tocar
-
-## Componentes personalizados
-
-- Componente reutilizable `FAB`
-- Mismo componente con distintas etiquetas, posiciones y acciones
-- Separación entre la pantalla (`App`) y el botón (`FAB`)
-- `App` pasa las acciones a `FAB` mediante callbacks
-
-## Estado y comportamiento del contador
-
-- Estado inicial del contador: `10`
+- `useState` guarda el contador: `const [count, setCount] = useState(10)`.
 - Sumar uno con `+1`
 - Restar uno con `-1`
 - Reiniciar con `R`
 - Reiniciar al mantener presionado `+1`
-- Actualización de la interfaz cuando cambia el estado
+- `setCount` cambia el valor y React actualiza la UI.
 - El contador funcional está en `App`; el `useState` de `FAB` no se utiliza
+
+### Componente reutilizable `FAB` y sus props
+
+- `FAB` se reutiliza con distintas etiquetas, posiciones y acciones.
+- `interface Props` define lo que puede recibir el componente.
+- **Props:** `label`, `position`, `onPress`, `onLongPress`.
+- **Obligatoria/opcionales:** `label: string`; las demás usan `?`.
+- **Opciones limitadas:** `position?: 'left' | 'right' | 'center'`.
+- `positionStyles[position]` aplica el estilo de la posición elegida.
+- **Callbacks:** `onPress` y `onLongPress` tienen tipo `() => void`.
+- **Predeterminado:** `position = 'center'`.
+- **Desestructuración:** `({ label, position })`.
+- **Llamada opcional:** `onPress?.()`.
+- `App` pasa callbacks flecha, como `onPress={() => setCount(count + 1)}`.
+
+## Componentes de React Native
+
+### `View` y `Text`
+
+- `View` — contenedor de la pantalla.
+- `Text` — muestra el contador y las etiquetas de los botones.
+
+### `Pressable`, eventos y respuesta háptica
+
+- `Pressable` — crea cada botón `FAB`.
+- `onPress` — acción al tocar; `onLongPress` — acción al mantener presionado.
+- `pressed` — indica que se está presionando el botón.
+- Estilo dinámico combinado: `style={({ pressed }) => [styles.floatingButton, positionStyles[position], pressed ? { opacity: 0.5 } : { opacity: 1 }]}`.
+- Los eventos ejecutan los callbacks que `App` pasó mediante props.
+- Expo Haptics añade respuesta táctil: `Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)`.
 
 ## Estilos y diseño
 
 - `StyleSheet.create` — agrupa estilos: `StyleSheet.create({ container: { flex: 1 } })`
 - **Flexbox** — ocupa y centra el contenido: `{ flex: 1, alignItems: 'center', justifyContent: 'center' }`
 - **Posicionamiento absoluto** — ubica un botón flotante: `{ position: 'absolute', bottom: 20 }`
-- **Estilos combinados en un arreglo** — mezcla base, posición y estado: `[styles.floatingButton, positionStyles[position], pressed ? { opacity: 0.5 } : { opacity: 1 }]`
 - **Estilos en línea** — se escriben directamente en JSX: `style={{ color: 'white', fontSize: 20 }}`
 - **Apariencia** — color y texto: `backgroundColor: '#65558F'`, `fontSize: 120`, `fontWeight: '100'`
 - **Espaciado y bordes** — `padding: 20`, `borderRadius: 15`
 - **Sombras/elevación** — `shadowOpacity: 0.3`, `elevation: 3`
-- **Posiciones disponibles** — `positionStyles = { left: ..., right: ..., center: null }`
 
 ## Expo y configuración
 
 - Punto de entrada con `registerRootComponent`
-- `expo-haptics` para el efecto háptico (`ImpactFeedbackStyle.Heavy`)
 - `expo-status-bar` para la barra de estado
-- Componente `StatusBar` con estilo automático
+- `StatusBar` con estilo automático: `<StatusBar style="auto" />`
 - `app.json` para nombre, orientación, iconos y opciones de plataforma
 - Expo para ejecutar la app en iOS, Android y web
 
