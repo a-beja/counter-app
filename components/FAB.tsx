@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { StyleSheet, Text, Pressable } from 'react-native';
 import * as Haptics from 'expo-haptics';
 
@@ -12,8 +11,6 @@ interface Props {
 }
 
 export default function FAB({ label, position = 'center', onPress, onLongPress }: Props) {
-
-    const [count, setCount] = useState(10);
 
     const positionStyles = {
       left: styles.positionLeft,
