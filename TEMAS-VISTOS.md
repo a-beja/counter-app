@@ -4,19 +4,30 @@ En esta app de contador practicamos conceptos básicos de React Native con Expo.
 
 ## React y TypeScript
 
+### Componentes y JSX
+
 - **Componentes funcionales** — funciones que dibujan la UI: `function App()` y `function FAB(...)`.
 - **JSX** — estructura visual; `{count}` inserta el valor del contador.
-- **Estado (`useState`)** — recuerda datos y actualiza la UI: `const [count, setCount] = useState(10)`.
-- **Props** — datos que recibe un componente: `label`, `position`.
+
+### Estado
+
+- **`useState`** — guarda datos y actualiza la UI: `const [count, setCount] = useState(10)`.
+
+### Props de `FAB`
+
+- **Props** — datos que recibe el componente: `label`, `position`.
 - **`interface Props`** — define qué props acepta `FAB`.
-- **Props obligatorias/opcionales** — `label: string` es requerida; `position?: 'left' | 'right' | 'center'` puede omitirse.
-- **Opciones limitadas** — solo admite estos valores: `'left' | 'right' | 'center'`.
-- **Callbacks** — props que reciben acciones: `onPress`, `onLongPress`.
-- **Tipo de función** — `() => void` significa función sin argumentos ni valor de retorno.
-- **Valor predeterminado** — `position = 'center'` se usa si no se proporciona la prop.
-- **Desestructuración** — extrae props directamente: `({ label, position })`.
+- **Obligatorias y opcionales** — `label: string`; `position?: 'left' | 'right' | 'center'`.
+- **Opciones limitadas** — `position` solo acepta `'left' | 'right' | 'center'`.
+- **Callbacks** — props para pasar acciones: `onPress`, `onLongPress`.
+- **Tipo callback** — `() => void`: función sin argumentos ni valor de retorno.
+- **Valor predeterminado** — `position = 'center'`.
+- **Desestructuración** — extrae props: `({ label, position })`.
 - **Encadenamiento opcional** — llama solo si existe: `onPress?.()`.
-- **Funciones flecha** — definen acciones breves: `() => setCount(count + 1)`.
+
+### Funciones flecha
+
+- Acciones breves: `() => setCount(count + 1)`.
 
 ## Componentes de React Native
 
@@ -35,10 +46,9 @@ En esta app de contador practicamos conceptos básicos de React Native con Expo.
 ## Componentes personalizados
 
 - Componente reutilizable `FAB`
-- Uso de una interfaz para describir sus props
 - Mismo componente con distintas etiquetas, posiciones y acciones
 - Separación entre la pantalla (`App`) y el botón (`FAB`)
-- Callbacks para que `FAB` comunique acciones a `App`
+- `App` pasa las acciones a `FAB` mediante callbacks
 
 ## Estado y comportamiento del contador
 
