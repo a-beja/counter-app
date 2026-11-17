@@ -4,19 +4,19 @@ En esta app de contador practicamos conceptos básicos de React Native con Expo.
 
 ## React y TypeScript
 
-- Componentes funcionales: `App` y `FAB`
-- JSX y expresiones dentro de `{ }`
-- Estado con `useState` y actualización con `setCount`
-- Props para configurar componentes
-- `interface Props` para definir las props de `FAB`
-- Props obligatorias y opcionales (`?`)
-- Tipos de opciones limitadas: `'left' | 'right' | 'center'`
-- Props de función (callbacks): `onPress` y `onLongPress`
-- Parámetros de función: `() => void`
-- Valores predeterminados: `position = 'center'`
-- Desestructuración de props
-- Encadenamiento opcional: `onPress?.()`
-- Funciones flecha para callbacks
+- **Componentes funcionales** — funciones que dibujan la UI: `function App()` y `function FAB(...)`.
+- **JSX** — estructura visual; `{count}` inserta el valor del contador.
+- **Estado (`useState`)** — recuerda datos y actualiza la UI: `const [count, setCount] = useState(10)`.
+- **Props** — datos que recibe un componente: `label`, `position`.
+- **`interface Props`** — define qué props acepta `FAB`.
+- **Props obligatorias/opcionales** — `label: string` es requerida; `position?: 'left' | 'right' | 'center'` puede omitirse.
+- **Opciones limitadas** — solo admite estos valores: `'left' | 'right' | 'center'`.
+- **Callbacks** — props que reciben acciones: `onPress`, `onLongPress`.
+- **Tipo de función** — `() => void` significa función sin argumentos ni valor de retorno.
+- **Valor predeterminado** — `position = 'center'` se usa si no se proporciona la prop.
+- **Desestructuración** — extrae props directamente: `({ label, position })`.
+- **Encadenamiento opcional** — llama solo si existe: `onPress?.()`.
+- **Funciones flecha** — definen acciones breves: `() => setCount(count + 1)`.
 
 ## Componentes de React Native
 
@@ -29,7 +29,7 @@ En esta app de contador practicamos conceptos básicos de React Native con Expo.
 - `onPress` — acción al tocar un botón
 - `onLongPress` — acción al mantenerlo presionado
 - `pressed` — estado de `Pressable` mientras se presiona
-- Estilos dinámicos según el estado de pulsación
+- Estilo dinámico con `style={({ pressed }) => [...]}` según la pulsación
 - Retroalimentación háptica al tocar
 
 ## Componentes personalizados
@@ -52,14 +52,15 @@ En esta app de contador practicamos conceptos básicos de React Native con Expo.
 
 ## Estilos y diseño
 
-- `StyleSheet.create`
-- Flexbox: `flex`, `alignItems` y `justifyContent`
-- Posicionamiento absoluto para los botones flotantes
-- Estilos combinados en un arreglo
-- Estilos en línea
-- Opacidad, color, tamaño de texto y tipografía
-- Espaciado, bordes redondeados y sombras/elevación
-- Posiciones izquierda, derecha y centro como opciones del componente
+- `StyleSheet.create` — agrupa estilos: `StyleSheet.create({ container: { flex: 1 } })`
+- **Flexbox** — ocupa y centra el contenido: `{ flex: 1, alignItems: 'center', justifyContent: 'center' }`
+- **Posicionamiento absoluto** — ubica un botón flotante: `{ position: 'absolute', bottom: 20 }`
+- **Estilos combinados en un arreglo** — mezcla base, posición y estado: `[styles.floatingButton, positionStyles[position], pressed ? { opacity: 0.5 } : { opacity: 1 }]`
+- **Estilos en línea** — se escriben directamente en JSX: `style={{ color: 'white', fontSize: 20 }}`
+- **Apariencia** — color y texto: `backgroundColor: '#65558F'`, `fontSize: 120`, `fontWeight: '100'`
+- **Espaciado y bordes** — `padding: 20`, `borderRadius: 15`
+- **Sombras/elevación** — `shadowOpacity: 0.3`, `elevation: 3`
+- **Posiciones disponibles** — `positionStyles = { left: ..., right: ..., center: null }`
 
 ## Expo y configuración
 
