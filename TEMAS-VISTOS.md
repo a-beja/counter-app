@@ -2,6 +2,25 @@
 
 En esta app de contador practicamos conceptos básicos de React Native con Expo.
 
+## Resumen general
+
+- **React:** componentes, props y estado para construir y actualizar la pantalla.
+- **TypeScript:** `interface Props` y tipos para definir las opciones de `FAB`.
+- **React Native:** `View`, `Text` y `Pressable` para la interfaz y los botones.
+- **Interacciones:** `onPress`, `onLongPress` y `pressed` para responder a las pulsaciones.
+- **Estilos:** `StyleSheet`, Flexbox y estilos dinámicos para acomodar la pantalla.
+- **Expo:** Haptics y `StatusBar` para funciones nativas y del sistema.
+- **Bun:** instalar dependencias y ejecutar la app.
+
+### Hooks, métodos y callbacks
+
+- `useState(10)` — hook que inicia el estado del contador.
+- `setCount(...)` — actualiza el número.
+- `StyleSheet.create(...)` — organiza los estilos.
+- `Haptics.impactAsync(...)` — solicita la respuesta háptica.
+- `registerRootComponent(App)` — registra la pantalla inicial de Expo.
+- `onPress` y `onLongPress` — callbacks de eventos; no son métodos de una clase.
+
 ## Archivos principales
 
 - `App.tsx` — pantalla, estado y acciones del contador.
